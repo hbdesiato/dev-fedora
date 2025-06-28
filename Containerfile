@@ -4,3 +4,7 @@ RUN dnf -y upgrade && \
     dnf -y group install c-development development-tools container-management && \
     dnf -y install jq && \
     dnf clean all
+RUN useradd user
+COPY --chmod=0444 00-user /etc/sudoers.d/
+USER user
+WORKDIR /home/user
